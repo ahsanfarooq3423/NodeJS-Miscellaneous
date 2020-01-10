@@ -10,4 +10,8 @@ router.get("/", (req,res,next)=> {
     res.sendFile(path.join(rootDir,"views", "query.html"))
 })
 
+router.post("/", (req,res,next)=> {
+    res.send(req.body);
+})
+
 module.exports = router;

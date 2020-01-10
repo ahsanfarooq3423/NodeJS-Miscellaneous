@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Post</title>
+    <title>Query</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <form action="/posts" method="POST">
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <ul class="main-header__item-list">
+                <li class="main-header__item"><a class="active" href="/home">Home</a></li>
+                <li class="main-header__item"><a href="/query">Query</a></li>
+            </ul>
+        </nav>
+    </header>
+    <form action="/query" method="POST" class="main-form">
         <input type="text" placeholder="Your Name" name="name">
         <input type="text" placeholder="Your Query" name="query">
         <button type="submit">Submit</button>
