@@ -5,7 +5,7 @@
         
     <div class="container-contact2">
         <div class="wrap-contact2">
-            <form class="contact2-form validate-form">
+            <form class="contact2-form validate-form" action="/add-complaint" method="POST">
                 <span class="contact2-form-title">
                    Register Your Complaint
                 </span>
@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="wrap-input2 validate-input" data-validate = "Message is required">
-                    <textarea class="input2" name="message"></textarea>
+                    <textarea class="input2" name="complaint"></textarea>
                     <span class="focus-input2" data-placeholder="Complaint"></span>
                 </div>
 
@@ -40,49 +40,22 @@
                   </tr>
                   <tr>
                     <th>#</th>
-                    <th colspan="2">Item Name</th>
+                    <th colspan="2">Complaint</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Atualizar página da equipe</td>
-                    <td>
-                      <i class="material-icons button edit">edit</i>
-                      <i class="material-icons button delete">delete</i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Design da nova marca</td>
-                    <td>
-                      <i class="material-icons button edit">edit</i>
-                      <i class="material-icons button delete">delete</i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Encontrar desenvolvedor front-end</td>
-                    <td>
-                      <i class="material-icons button edit">edit</i>
-                      <i class="material-icons button delete">delete</i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Encontrar desenvolvedor front-end</td>
-                    <td>
-                      <i class="material-icons button edit">edit</i>
-                      <i class="material-icons button delete">delete</i>
-                    </td>
-                  </tr> <tr>
-                    <td>3</td>
-                    <td>Encontrar desenvolvedor front-end</td>
-                    <td>
-                      <i class="material-icons button edit">edit</i>
-                      <i class="material-icons button delete">delete</i>
-                    </td>
-                  </tr>
+                 <% if (complaints.length  > 0) { %>
+                    <% for (var i in complaints) { %>
+                    <tr>
+                        <td><%= i  %></td>
+                        <td><%= complaints[i].complaint  %></td>
+                        <td>
+                        <i class="material-icons button delete">delete</i>
+                        </td>
+                    </tr>
+
+                    <% } %>
+                    <% } %>
                 </tbody>
               </table>
         </div>
