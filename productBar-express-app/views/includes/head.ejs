@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <div id="mainListDiv" class="main_list">
+                <ul class="navlinks">
+                    <li><a href="/" class = "<%= path === '/' ? 'active' : '' %>">Products</a></li>
+                    <li><a href="/admin" class="<%= path === '/admin' ? 'active' : '' %>" >Admin</a></li>
+                    <li><a href="/add-complaint" class="<%= path === '/add-complaint' ? 'active' : '' %>">Complaints</a></li>
+                </ul>
+            </div>
+            <span class="navTrigger">
+                <i></i>
+                <i></i>
+                <i></i>
+            </span>
+        </div>
+    </nav>
+    <br>
