@@ -1,9 +1,97 @@
 <%- include('includes/head.ejs')%>
 
+<div class="main-div" style="background-image: url('https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1653&q=80');">
 
-<div class="content">
-    <h1>Complaints</h1>
+        
+    <div class="container-contact2">
+        <div class="wrap-contact2">
+            <form class="contact2-form validate-form">
+                <span class="contact2-form-title">
+                   Register Your Complaint
+                </span>
+
+                <div class="wrap-input2 validate-input" data-validate="Name is required">
+                    <input class="input2" type="text" name="name">
+                    <span class="focus-input2" data-placeholder="Your Name"></span>
+                </div>
+
+                <div class="wrap-input2 validate-input" data-validate = "Message is required">
+                    <textarea class="input2" name="message"></textarea>
+                    <span class="focus-input2" data-placeholder="Complaint"></span>
+                </div>
+
+                <div class="container-contact2-form-btn">
+                    <div class="wrap-contact2-form-btn">
+                        <div class="contact2-form-bgbtn"></div>
+                        <button class="contact2-form-btn">
+                           Submit Complaint
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        
+        <div class="normal-table">
+            <table>
+                <thead>
+                  <tr>
+                    <th colspan="3">Complaint List</th>
+                  </tr>
+                  <tr>
+                    <th>#</th>
+                    <th colspan="2">Item Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Atualizar página da equipe</td>
+                    <td>
+                      <i class="material-icons button edit">edit</i>
+                      <i class="material-icons button delete">delete</i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Design da nova marca</td>
+                    <td>
+                      <i class="material-icons button edit">edit</i>
+                      <i class="material-icons button delete">delete</i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Encontrar desenvolvedor front-end</td>
+                    <td>
+                      <i class="material-icons button edit">edit</i>
+                      <i class="material-icons button delete">delete</i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Encontrar desenvolvedor front-end</td>
+                    <td>
+                      <i class="material-icons button edit">edit</i>
+                      <i class="material-icons button delete">delete</i>
+                    </td>
+                  </tr> <tr>
+                    <td>3</td>
+                    <td>Encontrar desenvolvedor front-end</td>
+                    <td>
+                      <i class="material-icons button edit">edit</i>
+                      <i class="material-icons button delete">delete</i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    
+    
 </div>
+
+    
 
 
 <%- include('includes/end.ejs')%>
