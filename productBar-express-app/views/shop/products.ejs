@@ -1,4 +1,4 @@
-<%- include('includes/head.ejs')%>
+<%- include('../includes/head.ejs')%>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
@@ -33,7 +33,7 @@
                                 <p class="btn-add">
                                     <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a></p>
                                 <p class="btn-details">
-                                    <i class="fa fa-list"></i><a href="#" class="hidden-sm">More details</a></p>
+                                    <i class="fa fa-list"></i><a href="/products/<%= product.id %>" class="hidden-sm">More details</a></p>
                             </div>
                             <div class="clearfix">
                             </div>
@@ -48,4 +48,4 @@
     
 
 
-<%- include('includes/end.ejs')%>
+<%- include('../includes/end.ejs')%>

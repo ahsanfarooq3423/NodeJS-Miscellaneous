@@ -9,7 +9,7 @@ exports.saveComplaint = (req,res, next) => {
 
 exports.addComplaint = (req, res, next) => {
     Complaint.fetchComplaints( complaints => {
-        res.render("complaints",{
+        res.render("admin/complaints",{
             path : '/add-complaint',
             complaints : complaints
         });

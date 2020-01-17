@@ -13,12 +13,6 @@ const getProductsData = cb => {
     })
 }
 
-const store = {
-    products : [
-        { name : "A Book", price : "$34" ,  url : "https://images.unsplash.com/photo-1490633874781-1c63cc424610?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" },
-        { name : "A Toy", price : "$23" ,  url : "https://images.unsplash.com/photo-1531214159280-079b95d26139?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" }
-    ]
-}
 
 
 module.exports = class Product {
@@ -32,7 +26,8 @@ module.exports = class Product {
         const newProduct = {
             name : this.name,
             price : this.price,
-            url : this.url
+            url : this.url,
+            id : Math.random()
         }
         getProductsData(products => {
             products.push(newProduct);
@@ -45,9 +40,15 @@ module.exports = class Product {
 
     }
 
-
     static fetchProducts (cb) {
         getProductsData(cb)
     }
+
+    static getProductById(id, cb) {
+        getProductsData(products => {
+            const product = products.find(p => p.id === id);
+            cb(product)
+        })
+      }
 
 }
