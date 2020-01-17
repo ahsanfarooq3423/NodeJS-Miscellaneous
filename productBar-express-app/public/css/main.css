@@ -19,6 +19,18 @@ body {
     text-align: center;
 }
 
+.details-main {
+    display: flex;
+    margin-top: 30px;
+
+}
+
+
+.details-image img  {
+    max-width: 85%;
+    max-height: 85% ;
+
+}
 
 
 
@@ -1428,6 +1440,20 @@ div.shadow{
     float: left;
 }
 
+.btn-cart {
+    width: 120px;
+    height: 30px;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.btn-cart:hover {
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+}
 .col-item .btn-add
 {
     border-right: 1px solid #E1E1E1;

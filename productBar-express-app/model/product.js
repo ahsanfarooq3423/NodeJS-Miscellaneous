@@ -20,6 +20,7 @@ module.exports = class Product {
         this.name = body.name;
         this.price = body.price;
         this.url = body.url;
+        this.details = body.details;
     }
 
     saveProduct () {
@@ -27,6 +28,7 @@ module.exports = class Product {
             name : this.name,
             price : this.price,
             url : this.url,
+            details : this.details,
             id : Math.random()
         }
         getProductsData(products => {
@@ -46,9 +48,26 @@ module.exports = class Product {
 
     static getProductById(id, cb) {
         getProductsData(products => {
-            const product = products.find(p => p.id === id);
+            const product = products.find(p => p.id == id);
             cb(product)
         })
       }
+
+    static deleteProduct(id, cb) {
+        let updatedProducts;
+        id = id*1;
+        getProductsData(products => {
+            updatedProducts = products.filter(p => p.id !== id)
+            fs.writeFile(p, JSON.stringify(updatedProducts), err => {
+                if (err) {
+                    console.log(err)
+                    return cb();
+                }
+                cb()
+            })
+            });
+            //need to delete from the cart as well when add the functionality of cart
+
+    }
 
 }

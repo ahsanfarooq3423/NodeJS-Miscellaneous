@@ -11,7 +11,11 @@ exports.getProducts = (req, res, next) => {
 
 exports.getProductDetails =(req, res, next) => {
     Product.getProductById(req.params.id, product => {
-        res.send(req.params.id);
+            console.log(product)
+            res.render('shop/product-details', {
+                product : product,
+                path : '/products'
+            })
     });
     
 }
@@ -29,5 +33,11 @@ exports.adminData  = (req, res, next) => {
 exports.saveProduct = (req,res,next) => {
     const product = new Product(req.body);
     product.saveProduct();
-    res.redirect("/")
+    res.redirect("/products")
+}
+
+exports.deleteProduct = (req, res, next) => {
+    Product.deleteProduct(req.body.productId, () => {   
+        res.redirect("/admin");
+    })    
 }

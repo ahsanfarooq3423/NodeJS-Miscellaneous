@@ -21,6 +21,11 @@
 						<span class="focus-input2" data-placeholder="Price"></span>
 					</div>
 
+          <div class="wrap-input2 validate-input" data-validate = "Message is required">
+						<textarea class="input2" name="details"></textarea>
+						<span class="focus-input2" data-placeholder="Product Details"></span>
+					</div>
+
 					<div class="wrap-input2 validate-input" data-validate = "Message is required">
 						<textarea class="input2" name="url"></textarea>
 						<span class="focus-input2" data-placeholder="Image Url"></span>
@@ -58,7 +63,10 @@
                                 <td><%= products[i].name %></td>
                                 <td>
                                 <i class="material-icons button edit">edit</i>
-                                <i class="material-icons button delete">delete</i>
+                                <form action="/admin/delete-product" method="POST">
+                                  <input type="hidden" name="productId" value = "<%= products[i].id %>">
+                                  <button type="submit" class="material-icons button delete">delete</button>
+                                </form>
                                 </td>
                             </tr>
     
