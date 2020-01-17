@@ -47,8 +47,11 @@ module.exports = class Product {
     }
 
     static getProductById(id, cb) {
+        id = id*1;
+        console.log('IN THE GETPRODUCT BY ID');
         getProductsData(products => {
             const product = products.find(p => p.id == id);
+            console.log(product);
             cb(product)
         })
       }

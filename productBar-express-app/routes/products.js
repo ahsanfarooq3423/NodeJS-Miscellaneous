@@ -8,6 +8,6 @@ router.get("/products/:id", storeController.getProductDetails)
 
 router.get("/products", storeController.getProducts)
 
-
+router.get('/cart/:id', storeController.addProductToCart);
 
 module.exports = router;

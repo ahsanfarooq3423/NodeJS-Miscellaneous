@@ -12,7 +12,8 @@
         <div class="details-sub">
             <h3>Details:</h3>
             <p><%= product.details %></p>
-            <button class="btn-cart">Add to Cart</button>
+
+            <a class="btn-cart" href="/cart/<%= product.id %>">Add to Cart</a>
         </div>
     </div>
     
