@@ -44,8 +44,9 @@ exports.deleteProduct = (req, res, next) => {
 }
 
 exports.addProductToCart = (req, res, next) => {
-    console.log(req.params.id);
     Cart.postToCart(req.params.id, ()=> {
         res.redirect('/products')
     })
 }
+
+
