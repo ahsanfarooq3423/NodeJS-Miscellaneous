@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 
+const mongoConnect = require('./util/database').mongoConnect;
+
 const adminData = require("./routes/admin")
 const complaintRoutes = require("./routes/complaints")
 const productRoutes = require("./routes/products")
@@ -24,4 +26,6 @@ app.use((req,res,next)=> {
     res.status(404).render("404", {path : '404'})
 })
 
-app.listen(3000, ()=> console.log("The server is listening at port 3000"));
+mongoConnect( () => {
+    app.listen(3000, ()=> console.log("The server is listening at port 3000"));
+} )

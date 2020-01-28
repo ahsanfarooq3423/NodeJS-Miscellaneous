@@ -5,10 +5,10 @@ const storeController = require("../controller/complaints");
 const router = express.Router();
 
 
-router.get("/add-complaint", storeController.addComplaint)
+// router.get("/add-complaint", storeController.addComplaint)
 
 
-router.post("/add-complaint", storeController.saveComplaint)
+// router.post("/add-complaint", storeController.saveComplaint)
 
 
 module.exports = router;
