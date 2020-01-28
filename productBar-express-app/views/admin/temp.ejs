@@ -1,0 +1,32 @@
+<div class="normal-table">
+    <table>
+        <thead>
+          <tr>
+            <th colspan="3">Products List</th>
+          </tr>
+          <tr>
+            <th>#</th>
+            <th colspan="2">Item Name</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% if (products.length  > 0) { %>
+                <% for (var i in products) { %>
+
+                <tr class="list-item">
+                    <td><%= i %></td>
+                    <td><%= products[i].name %></td>
+                    <td>
+                    <i class="material-icons button edit">edit</i>
+                    <form action="/admin/delete-product" method="POST">
+                      <input type="hidden" name="productId" value = "<%= products[i].id %>">
+                      <button type="submit" class="material-icons button delete">delete</button>
+                    </form>
+                    </td>
+                </tr>
+
+                <% } %>
+                <% } %>
+        </tbody>
+      </table>
+</div>

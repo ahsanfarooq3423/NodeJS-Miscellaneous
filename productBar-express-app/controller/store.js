@@ -22,19 +22,22 @@ exports.getProductDetails =(req, res, next) => {
 }
 
 exports.adminData  = (req, res, next) => {
-    Product.fetchProducts(products => {
-        res.render("admin/admin", {
-            path : '/admin',
-            products : products
-        });
+    res.render("admin/admin" , {
+        path : '/admin'
     })
+    // Product.fetchProducts(products => {
+    //     res.render("admin/admin", {
+    //         path : '/admin',
+    //         products : products
+    //     });
+    // })
 }
 
 
 exports.saveProduct = (req,res,next) => {
     const product = new Product(req.body);
     product.saveProduct();
-    res.redirect("/products")
+    res.redirect("/products");
 }
 
 exports.deleteProduct = (req, res, next) => {
