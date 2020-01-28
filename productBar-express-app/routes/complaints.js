@@ -6,6 +6,8 @@ const router = express.Router();
 
 
 router.get("/add-complaint", storeController.addComplaint)
+
+
 router.post("/add-complaint", storeController.saveComplaint)
 
 
