@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 
-const mongoConnect = require('./util/database').mongoConnect;
+const mongoose = require('mongoose');
 
 const adminData = require("./routes/admin")
 const complaintRoutes = require("./routes/complaints")
@@ -26,6 +26,9 @@ app.use((req,res,next)=> {
     res.status(404).render("404", {path : '404'})
 })
 
-mongoConnect( () => {
-    app.listen(3000, ()=> console.log("The server is listening at port 3000"));
-} )
+mongoose.connect('mongodb://ahsan:mongodb8008@ds129233.mlab.com:29233/productbar')
+    .then(response => {
+        console.log('---------CONNECTED WITH THE MONGO DB----------')
+        app.listen(3000)
+    })
+    .catch(err => console.log(err))
