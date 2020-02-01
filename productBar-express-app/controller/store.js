@@ -1,36 +1,40 @@
 const Product = require("../model/product");
 const Cart = require("../model/cart");
 
+//DONE
 exports.getProducts = (req, res, next) => {
-    Product.fetchProducts(products => {
-        res.render("shop/products", {
-            path: '/products',
-            products: products
-        });
-    })
-}
-
-exports.getProductDetails = (req, res, next) => {
-    Product.getProductById(req.params.id, product => {
-        console.log(product)
-        res.render('shop/product-details', {
-            product: product,
-            path: '/products'
+    Product.find()
+        .then(products => {
+            res.render("shop/products", {
+                path: '/products',
+                products: products
+            });
         })
-    });
-
+        .catch(err => console.log(err))
 }
 
+//DONE
+exports.getProductDetails = (req, res, next) => {
+    Product.findById(req.params.id)
+        .then(product => {
+            res.render('shop/product-details', {
+                product : product,
+                path : '/products'
+            })
+        })
+        .catch(err => console.log(err)) 
+}
+//DONE
 exports.adminData = (req, res, next) => {
-    res.render("admin/admin", {
-        path: '/admin'
-    })
-    // Product.fetchProducts(products => {
-    //     res.render("admin/admin", {
-    //         path : '/admin',
-    //         products : products
-    //     });
-    // })
+    Product.find()
+        .then(products => {
+            res.render("admin/admin", {
+                path: '/admin',
+                products: products
+            });
+        })
+        .catch(err => console.log(err))
+
 }
 
 //DONE
@@ -47,17 +51,22 @@ exports.saveProduct = (req, res, next) => {
         url: url
     });
     product.save()
-        .then(response=> {
+        .then(response => {
             res.redirect("/products");
         })
         .catch(err => console.log(err))
 }
 
+//DONE
 exports.deleteProduct = (req, res, next) => {
-    Product.deleteProduct(req.body.productId, () => {
-        res.redirect("/admin");
-    })
+    Product.deleteOne({ _id : req.body.productId })
+        .then(response => {
+            console.log(response)
+            res.redirect('/admin')
+        })
+        .catch(err => console.log(err))
 }
+
 
 exports.addProductToCart = (req, res, next) => {
     Cart.postToCart(req.params.id, () => {

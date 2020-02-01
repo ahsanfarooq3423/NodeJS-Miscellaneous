@@ -1,13 +1,14 @@
 <%- include('../includes/head.ejs')%>
 
-<div class="main-div" style="background-image: url('https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1653&q=80');">
+<div class="main-div"
+    style="background-image: url('https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1653&q=80');">
 
-        
+
     <div class="container-contact2">
         <div class="wrap-contact2">
-            <form class="contact2-form validate-form" action="/add-complaint" method="POST">
+            <form class="contact2-form validate-form" action="/admin/add-complaint" method="POST">
                 <span class="contact2-form-title">
-                   Register Your Complaint
+                    Register Your Complaint
                 </span>
 
                 <div class="wrap-input2 validate-input" data-validate="Name is required">
@@ -15,7 +16,7 @@
                     <span class="focus-input2" data-placeholder="Your Name"></span>
                 </div>
 
-                <div class="wrap-input2 validate-input" data-validate = "Message is required">
+                <div class="wrap-input2 validate-input" data-validate="Message is required">
                     <textarea class="input2" name="complaint"></textarea>
                     <span class="focus-input2" data-placeholder="Complaint"></span>
                 </div>
@@ -24,47 +25,47 @@
                     <div class="wrap-contact2-form-btn">
                         <div class="contact2-form-bgbtn"></div>
                         <button class="contact2-form-btn">
-                           Submit Complaint
+                            Submit Complaint
                         </button>
                     </div>
                 </div>
             </form>
         </div>
-        
-        
+
         <div class="normal-table">
             <table>
                 <thead>
-                  <tr>
-                    <th colspan="3">Complaint List</th>
-                  </tr>
-                  <tr>
-                    <th>#</th>
-                    <th colspan="2">Complaint</th>
-                  </tr>
+                    <tr>
+                        <th colspan="3">Complaint List</th>
+                    </tr>
+                    <tr>
+                        <th>#</th>
+                        <th colspan="2">Complaint</th>
+                    </tr>
                 </thead>
                 <tbody>
-                 <% if (complaints.length  > 0) { %>
+                    <% if (complaints.length  > 0) { %>
                     <% for (var i in complaints) { %>
                     <tr>
                         <td><%= i  %></td>
-                        <td><%= complaints[i].complaint  %></td>
+                        <td><%= complaints[i].complaint_description  %></td>
                         <td>
-                        <i class="material-icons button delete">delete</i>
+							<form action="/admin/delete-complaint" method="POST">
+								<input type="hidden" name="complaintId" value="<%= complaints[i].id %>">
+								<button type="submit" class="material-icons button delete">delete</button>
+							</form>
                         </td>
                     </tr>
 
                     <% } %>
                     <% } %>
                 </tbody>
-              </table>
+            </table>
         </div>
     </div>
-    
-    
 </div>
 
-    
+
 
 
 <%- include('../includes/end.ejs')%>

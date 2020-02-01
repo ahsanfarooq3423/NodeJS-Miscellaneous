@@ -1,14 +1,19 @@
 const express = require("express");
 
-const storeController = require("../controller/complaints");
+const complaintController = require("../controller/complaints");
+
 
 const router = express.Router();
 
 
-// router.get("/add-complaint", storeController.addComplaint)
+router.get("/add-complaint", complaintController.addComplaint)
 
 
-// router.post("/add-complaint", storeController.saveComplaint)
+router.post("/add-complaint", complaintController.saveComplaint);
+
+
+router.post('/delete-complaint',complaintController.deleteComplaint);
+
 
 
 module.exports = router;

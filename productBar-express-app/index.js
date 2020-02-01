@@ -17,9 +17,13 @@ app.use(bodyParser.urlencoded({extended : false}));
 app.use(express.static(path.join(__dirname, "public")))
 
 app.use("/admin", adminData.routes);
-app.use(complaintRoutes);
+app.use("/admin",complaintRoutes);
 app.use(productRoutes);
 
+app.use((req,res,next)=> {
+    res.redirect('/products')
+    next()
+})
 
 
 app.use((req,res,next)=> {

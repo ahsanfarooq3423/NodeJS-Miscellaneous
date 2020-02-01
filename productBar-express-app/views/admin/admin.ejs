@@ -1,55 +1,88 @@
-
-
 <%- include('../includes/head.ejs')%>
-    <div class="main-div" style="background-image: url('https://images.unsplash.com/photo-1559741746-24caedc5cd2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2796&q=80');">
+<div class="main-div"
+	style="background-image: url('https://images.unsplash.com/photo-1559741746-24caedc5cd2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2796&q=80');">
 
-        
-        <div class="container-contact2">
-			<div class="wrap-contact2">
-				<form class="contact2-form validate-form" action="/admin/add-product" method="POST">
-					<span class="contact2-form-title">
-						Add a Product
-					</span>
 
-					<div class="wrap-input2 validate-input" data-validate="Name is required">
-						<input class="input2" type="text" name="name">
-						<span class="focus-input2" data-placeholder="Product Name"></span>
-                    </div>
-                    
-                    <div class="wrap-input2 validate-input" data-validate="Name is required">
-						<input class="input2" type="text" name="price">
-						<span class="focus-input2" data-placeholder="Price"></span>
+
+
+	<div class="container-contact2">
+		<div class="normal-table">
+			<table>
+				<thead>
+					<tr>
+						<th colspan="3">Products List</th>
+					</tr>
+					<tr>
+						<th>#</th>
+						<th colspan="2">Item Name</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% if (products.length  > 0) { %>
+					<% for (var i in products) { %>
+
+					<tr class="list-item">
+						<td><%= i %></td>
+						<td><%= products[i].name %></td>
+						<td>
+							<i class="material-icons button edit">edit</i>
+							<form action="/admin/delete-product" method="POST">
+								<input type="hidden" name="productId" value="<%= products[i].id %>">
+								<button type="submit" class="material-icons button delete">delete</button>
+							</form>
+						</td>
+					</tr>
+
+					<% } %>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
+		<div class="wrap-contact2">
+			<form class="contact2-form validate-form" action="/admin/add-product" method="POST">
+				<span class="contact2-form-title">
+					Add a Product
+				</span>
+
+				<div class="wrap-input2 validate-input" data-validate="Name is required">
+					<input class="input2" type="text" name="name">
+					<span class="focus-input2" data-placeholder="Product Name"></span>
+				</div>
+
+				<div class="wrap-input2 validate-input" data-validate="Name is required">
+					<input class="input2" type="text" name="price">
+					<span class="focus-input2" data-placeholder="Price"></span>
+				</div>
+
+				<div class="wrap-input2 validate-input" data-validate="Message is required">
+					<textarea class="input2" name="details"></textarea>
+					<span class="focus-input2" data-placeholder="Product Details"></span>
+				</div>
+
+				<div class="wrap-input2 validate-input" data-validate="Message is required">
+					<textarea class="input2" name="url"></textarea>
+					<span class="focus-input2" data-placeholder="Image Url"></span>
+				</div>
+
+				<div class="container-contact2-form-btn">
+					<div class="wrap-contact2-form-btn">
+						<div class="contact2-form-bgbtn"></div>
+						<button class="contact2-form-btn">
+							Add to Product List
+						</button>
 					</div>
+				</div>
+			</form>
+		</div>
 
-          <div class="wrap-input2 validate-input" data-validate = "Message is required">
-						<textarea class="input2" name="details"></textarea>
-						<span class="focus-input2" data-placeholder="Product Details"></span>
-					</div>
 
-					<div class="wrap-input2 validate-input" data-validate = "Message is required">
-						<textarea class="input2" name="url"></textarea>
-						<span class="focus-input2" data-placeholder="Image Url"></span>
-					</div>
 
-					<div class="container-contact2-form-btn">
-						<div class="wrap-contact2-form-btn">
-							<div class="contact2-form-bgbtn"></div>
-							<button class="contact2-form-btn">
-								Add to Product List
-							</button>
-						</div>
-					</div>
-				</form>
-            </div>
-            
-            
+	</div>
 
-        </div>
-        
-        
-    </div>
 
-		
-   
+</div>
+
+
+
 
 <%- include('../includes/end.ejs')%>
