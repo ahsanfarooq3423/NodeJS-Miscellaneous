@@ -1,15 +1,17 @@
 const express = require("express");
 
+const authMiddleware = require('../middleware/auth-middleware');
+
 const storeController = require("../controller/store");
 
 const router = express.Router();
 
 
-router.get("/", storeController.adminData );
+router.get("/", authMiddleware.authenticate ,storeController.adminData );
 
-router.post("/add-product", storeController.saveProduct );
+router.post("/add-product", authMiddleware.authenticate ,storeController.saveProduct );
 
-router.post("/delete-product", storeController.deleteProduct);
+router.post("/delete-product", authMiddleware.authenticate ,storeController.deleteProduct);
 
 
 exports.routes = router;

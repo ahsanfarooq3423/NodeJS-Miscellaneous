@@ -33,8 +33,7 @@ exports.postLogin = (req, res, next) => {
                         req.session.isLoggedIn = true;
                         req.session.user = user;
                         return req.session.save(err => {
-                            console.log(err);
-                            res.redirect('/')
+                            res.redirect('/products')
                         })
                     }
                     return res.redirect('/login')
@@ -70,6 +69,13 @@ exports.postSignup = (req, res, next) => {
                 })
         })
         .catch(err => console.log(err))
+}
+
+
+exports.logout = (req, res, next) => {
+    req.session.destroy(err => {
+        res.redirect('/products')
+    })
 }
 
 

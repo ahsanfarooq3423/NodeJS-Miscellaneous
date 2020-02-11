@@ -33,17 +33,18 @@ app.use(
     })
 )
 
-// app.use((req, res, next) => {
-//     if (!req.session.user){
-//         next()
-//     }
-//     User.findOne({_id : req.session.user._id})
-//         .then(user => {
-//             req.user = user
-//             next()
-//         })
-//         .catch(err => console.log(err))
-// })
+app.use((req, res, next) => {
+    console.log(req.session)
+    if (!req.session.user){
+        return next()
+    }
+    User.findOne({_id : req.session.user._id})
+        .then(user => {
+            req.user = user
+            next()
+        })
+        .catch(err => console.log(err))
+})
 
 app.set("view engine", "ejs");
 app.set("views", "views");
