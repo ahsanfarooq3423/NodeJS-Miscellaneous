@@ -36,6 +36,3 @@ exports.deleteComplaint = (req, res, next) => {
         })
 }
 
-
-
-

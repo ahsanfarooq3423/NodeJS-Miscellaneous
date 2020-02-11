@@ -1,5 +1,5 @@
 const Product = require("../model/product");
-const Cart = require("../model/cart");
+const User = require('../model/user');
 
 //DONE
 exports.getProducts = (req, res, next) => {
@@ -69,9 +69,26 @@ exports.deleteProduct = (req, res, next) => {
 
 
 exports.addProductToCart = (req, res, next) => {
-    Cart.postToCart(req.params.id, () => {
-        res.redirect('/products')
-    })
+    Product.findById(req.params.id)
+        .then(product => {
+            return req.user.addToCart(product);
+        })
+        .then(result => {
+            res.redirect('/');
+        })
+        .catch(err => console.log(err))
 }
+
+exports.getCart = (req, res, next) => {
+    User.findById(req.user.id)
+        .populate('cart.items.productId')
+        .then(result => {
+            res.render('shop/cart', {
+                cart : result.cart.items,
+                path : '/cart'
+            })
+        })
+}
+
 
 

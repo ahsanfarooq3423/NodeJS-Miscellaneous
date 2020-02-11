@@ -52,6 +52,7 @@ body {
 }
 
 .nav div.main_list {
+    display: flex;
     height: 65px;
     float: left;
     margin-left: 40px;
@@ -1521,3 +1522,10 @@ Hover the image
     color: #FFF;
     font-weight: bold;
 }
+
+.auth-form {
+    width: 20%;
+    margin: auto;
+    margin-top: 10%;
+}
+

@@ -5,7 +5,14 @@
     <h1>Your Cart : </h1>
     <div>
         <ul>
-            
+            <% for (product of cart) { %>
+            <hr/>
+            <li>
+                <p><%= product.productId.name  %></p>
+                <p>Quantity : <%= product.quantity %></p>    
+            </li>
+            <hr/>
+            <% } %>
         </ul>
     </div>
 </div>
