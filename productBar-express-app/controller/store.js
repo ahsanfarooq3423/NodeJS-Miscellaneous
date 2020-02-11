@@ -7,7 +7,8 @@ exports.getProducts = (req, res, next) => {
         .then(products => {
             res.render("shop/products", {
                 path: '/products',
-                products: products
+                products: products,
+                isAuthenticated : req.session.isLoggedIn
             });
         })
         .catch(err => console.log(err))
@@ -19,7 +20,8 @@ exports.getProductDetails = (req, res, next) => {
         .then(product => {
             res.render('shop/product-details', {
                 product : product,
-                path : '/products'
+                path : '/products',
+                isAuthenticated : req.session.isLoggedIn
             })
         })
         .catch(err => console.log(err)) 
@@ -30,7 +32,8 @@ exports.adminData = (req, res, next) => {
         .then(products => {
             res.render("admin/admin", {
                 path: '/admin',
-                products: products
+                products: products,
+                isAuthenticated : req.session.isLoggedIn
             });
         })
         .catch(err => console.log(err))
@@ -85,7 +88,8 @@ exports.getCart = (req, res, next) => {
         .then(result => {
             res.render('shop/cart', {
                 cart : result.cart.items,
-                path : '/cart'
+                path : '/cart',
+                isAuthenticated : req.session.isLoggedIn
             })
         })
 }
