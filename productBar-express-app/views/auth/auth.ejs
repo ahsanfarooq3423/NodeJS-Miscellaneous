@@ -1,31 +1,42 @@
 <%- include('../includes/head.ejs')%>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <div class="auth-form">
-<form action="<%= isSignup  ? '/signup' : '/login' %>" method="POST">
-    <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" name = "email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <% if (isSignup) {%>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Confirm Password</label>
-        <input type="password" name="confirmPassword" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password">
-    </div>
-    <button type="submit" class="btn btn-primary">SignUp</button>
-    <% } else { %>
-    <button type="submit" class="btn btn-primary">Login</button>
+
+    <% if (errorMessage) { %>
+        <div class="alert alert-secondary" role="alert">
+            <%= errorMessage %>
+        </div>
     <% } %>
-    <input type="hidden" name = "_csrf" value="<%= csrfToken %>">
-        
-</form>
+
+    <form action="<%= isSignup  ? '/signup' : '/login' %>" method="POST">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1"
+                placeholder="Password">
+        </div>
+        <% if (isSignup) {%>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Confirm Password</label>
+            <input type="password" name="confirmPassword" class="form-control" id="exampleInputPassword1"
+                placeholder="Confirm Password">
+        </div>
+        <button type="submit" class="btn btn-primary">SignUp</button>
+        <% } else { %>
+        <button type="submit" class="btn btn-primary">Login</button>
+        <% } %>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+    </form>
 
 
 
 </div>
 
 
-<%- include('../includes/end.ejs')%> 
+<%- include('../includes/end.ejs')%>

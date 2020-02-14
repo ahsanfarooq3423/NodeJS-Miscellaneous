@@ -1,22 +1,45 @@
 const User = require('../model/user');
 const bcrypt = require('bcrypt');
 
+const nodemailer = require('nodemailer');
+const sendgridTransporter = require('nodemailer-sendgrid-transport');
+
+
+const transporter = nodemailer.createTransport(sendgridTransporter({
+    auth : {
+        api_key : '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'
+    }
+})) 
+
 exports.getLogin = (req, res, next) => {
+    let message = req.flash('error')
+    if (message.length > 0) {
+        message = message[0]
+    } else {
+        message = null;
+    }
+
     res.render('auth/auth', {
         path: '/login',
         pageTitle: 'Login',
         isSignup: false,
-        isAuthenticated : false
+        errorMessage : message
     })
 }
 
 
 exports.getSignup = (req, res, next) => {
+    let message = req.flash('error')
+    if (message.length > 0) {
+        message = message[0]
+    } else {
+        message = null;
+    }
     res.render('auth/auth', {
         path: '/signup',
         pageTitle: 'Signup',
         isSignup: true,
-        isAuthenticated : false
+        errorMessage : message
     })
 }
 
@@ -27,6 +50,7 @@ exports.postLogin = (req, res, next) => {
     User.findOne({ email: email })
         .then(user => {
             if (!user) {
+                req.flash('error', 'Invalid Email or Password')
                 return res.redirect('/signup')
             }
             bcrypt.compare(password, user.password)
@@ -38,6 +62,7 @@ exports.postLogin = (req, res, next) => {
                             res.redirect('/products')
                         })
                     }
+                    req.flash('error', 'Password your enter is Invalid')
                     return res.redirect('/login')
                 })
         })
@@ -66,7 +91,14 @@ exports.postSignup = (req, res, next) => {
                 })
                 .then(response => {
                     res.redirect('/login')
+                    return trasnsporter.sendMail({
+                        to :  email,
+                        from : 'shop@productBar.com',
+                        subject : 'Sign Up Succeded at Product Bar Store',
+                        html : '<h1> Welcome to the Store... </h1>'
+                    })
                 })
+                .catch(err => console.log(err))
         })
         .catch(err => console.log(err))
 }

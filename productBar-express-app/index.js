@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require('mongoose');
 const csrf = require('csurf');
+const flash = require('connect-flash');
 
 const session = require('express-session');
 
@@ -15,6 +16,7 @@ const User = require('./model/user');
 const app = express();
 
 const csrfProtection = csrf();
+
 
 
 const store = new MongoDBStore({
@@ -36,6 +38,8 @@ app.use(
 )
 
 app.use(csrfProtection);
+app.use(flash());
+
 
 app.use((req, res, next) => {
     if (!req.session.user){
@@ -69,15 +73,17 @@ app.use("/admin",complaintRoutes);
 app.use(productRoutes);
 app.use(authRoutes);
 
-app.use((req,res,next)=> {
-    res.redirect('/products');
-    next();
-})
 
 
 app.use((req,res,next)=> {
     res.status(404).render("404", {path : '404', isAuthenticated : req.session.isLoggedIn})
 })
+
+app.use((req,res,next)=> {
+    res.redirect('/products');
+    next();
+})
+
 
 mongoose.connect(MONGODB_URI)
     .then(response => {
