@@ -21,8 +21,7 @@ exports.addComplaint = (req, res, next) => {
         .then(complaints => {
             res.render('admin/complaints', {
                 path : '/admin/add-complaint',
-                complaints : complaints,
-                isAuthenticated : req.session.isLoggedIn
+                complaints : complaints
             })
         })
         .catch(err => console.log(err))

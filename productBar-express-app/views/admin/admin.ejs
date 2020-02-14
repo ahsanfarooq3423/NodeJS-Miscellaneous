@@ -28,6 +28,8 @@
 							<i class="material-icons button edit">edit</i>
 							<form action="/admin/delete-product" method="POST">
 								<input type="hidden" name="productId" value="<%= products[i].id %>">
+								<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
 								<button type="submit" class="material-icons button delete">delete</button>
 							</form>
 						</td>
@@ -63,6 +65,8 @@
 					<textarea class="input2" name="url"></textarea>
 					<span class="focus-input2" data-placeholder="Image Url"></span>
 				</div>
+
+				<input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
 				<div class="container-contact2-form-btn">
 					<div class="wrap-contact2-form-btn">
