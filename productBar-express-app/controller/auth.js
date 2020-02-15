@@ -144,6 +144,7 @@ exports.postReset = (req, res, next) => {
                 return user.save()
             })
             .then(result => {
+                req.flash('error', 'An email has been sent to your account for reseting the password.')
                 res.redirect('/login')
                 transporter.sendMail({
                     to: email,
@@ -160,15 +161,37 @@ exports.postReset = (req, res, next) => {
     })
 }
 
-
 exports.getNewPassword = (req, res, next) => {
+    let token = req.params.token;
+
+    User.findOne({ resetToken: token, resetTokenExpiration: { $gt: Date.now() } })
+        .then(user => {
+            let message = req.flash('error')
+            if (message.length > 0) {
+                message = message[0]
+            } else {
+                message = null;
+            }
+            res.render('auth/new-password', {
+                path: '/new-password',
+                pageTitle: 'New Password',
+                errorMessage: message,
+                userId : user._id.toString(),
+                passwordToken : token
+            })
+        })
+        .catch(err => console.log(err))
+}
+
+
+exports.postNewPassword = (req, res, next) => {
     let passwordToken = req.params.token;
     let newPassword = req.body.password;
     let userId = req.body.userId;
 
     let resetUser;
 
-    User.findOne({_id : userId, resetToken : passwordToken, resetTokenExpiration : {$gt : Date.now()} })
+    User.findOne({ _id: userId, resetToken: passwordToken, resetTokenExpiration: { $gt: Date.now() } })
         .then(user => {
             resetUser = user;
             return bcrypt.hash(newPassword, 12)
