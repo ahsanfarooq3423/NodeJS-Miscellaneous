@@ -59,6 +59,7 @@ exports.saveProduct = (req, res, next) => {
 
 //DONE
 exports.deleteProduct = (req, res, next) => {
+
     Product.deleteOne({ _id : req.body.productId })
         .then(response => {
             console.log(response)
@@ -89,6 +90,5 @@ exports.getCart = (req, res, next) => {
             })
         })
 }
-
 
 
