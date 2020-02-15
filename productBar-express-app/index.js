@@ -17,8 +17,6 @@ const app = express();
 
 const csrfProtection = csrf();
 
-
-
 const store = new MongoDBStore({
     uri : MONGODB_URI,
     collection : 'session'
